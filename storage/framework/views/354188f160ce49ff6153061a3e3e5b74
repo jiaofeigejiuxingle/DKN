@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主要内容区main</title>
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/bootstrap/css/bootstrap.min.css')); ?>" />
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/css/admin/user_index.css')); ?>" />
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/css/admin/base.css')); ?>" />
+<script src="<?php echo e(asset('/js/jquery-1.8.3.min.js')); ?>" type="text/javascript"></script>
+</head>
+<body>
+<!--main_top-->
+<table class="borded">
+    <tr>
+        <td>
+            <table>
+            <tr>
+            <td>
+                    <form method="post" action="<?php echo e(url('/Admin/user')); ?>">
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
+                        <span><b>管理员：</b></sapn><input type="text" name="keyword" value="<?php echo e($keyword); ?>" placeholder="请输入账号或昵称" />
+                        <input type="submit" value="查找" />
+                    </p>
+                    </form>
+            </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+     <tr>
+        <td align="left" valign="top">
+        <?php echo e(session("info")); ?>
+
+    <table class="bordered" border="0">
+      <tr>
+        <th>编号</th><th>账号</th><th>性别</th><th>昵称</th><th>创建时间</th><th>操作</th>
+      </tr>
+     <?php foreach($users as $tmp): ?>
+      <tr>
+        <td><?php echo e($tmp->id); ?></td>
+	<td><?php echo e($tmp->uname); ?></td>
+	<td><?php echo e($tmp->sex); ?></td>
+	<td><?php echo e($tmp->nickname); ?></td>
+	<td><?php echo e($tmp->created_at); ?></td>
+        <td><a href="/Admin/user/edit/<?php echo e($tmp->id); ?>" target="_self" onFocus="this.blur()">编辑</a>
+            <span class="gray">&nbsp;&nbsp;</span><a href="/Admin/user/destroy/<?php echo e($tmp->id); ?>" target="_self" onFocus="this.blur()">删除</a><span>&nbsp;&nbsp;</span></td>
+      </tr>
+    <?php endforeach; ?> 
+    </table>
+    <p>
+	<?php echo $users->appends(['keyword' => $keyword])->render(); ?>
+
+    </p>
+    </td>
+    </tr>
+</table>
+</body>
+</html>

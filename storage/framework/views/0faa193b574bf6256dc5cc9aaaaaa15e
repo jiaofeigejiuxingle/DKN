@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主要内容区main</title>
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/css/admin/user_index.css')); ?>" />
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/css/admin/base.css')); ?>" />
+<script src="<?php echo e(asset('/js/jquery-1.8.3.min.js')); ?>" type="text/javascript"></script>
+</head>
+<body>
+<!--main_top-->
+<table class="bordered">
+    <tr>
+        <th>编号</th><th>名称</th><th>权限</th><th>操作</th>
+    </tr>
+    <?php foreach($groups as $row=>$group): ?>
+    <tr>
+        <td><?php echo e($group->id); ?></td>
+        <td><?php echo e($group->title); ?></td>
+        <td>
+            <?php foreach($rules as $col=>$rule): ?>
+            <?php if($col % 5 == 0): ?> <p> <?php endif; ?>
+                <?php if(in_array($rule->id, explode(",", $group->rules))): ?>
+                <input type="checkbox" name="ruleid[]" value="<?php echo e($rule->id); ?>" group="<?php echo e($group->id); ?>" id="i<?php echo e($row.$col); ?>" checked /><label for="i<?php echo e($row.$col); ?>"><?php echo e($rule->title); ?></label>
+                <?php else: ?>
+                <input type="checkbox" name="ruleid[]" value="<?php echo e($rule->id); ?>" group="<?php echo e($group->id); ?>" id="i<?php echo e($row.$col); ?>" /><label for="i<?php echo e($row.$col); ?>"><?php echo e($rule->title); ?></label>
+                <?php endif; ?>
+            <?php if($col % 5 == 4): ?> </p> <?php endif; ?>
+            <?php endforeach; ?>
+        </td>
+        <td><a href="<?php echo e(url('/Admin/group/'.$group->id."/edit")); ?>">编辑</a> <a href="/Admin/group/delete/<?php echo e($group->id); ?>">删除</a></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<script src="<?php echo e(asset('/js/admin/group_index.js')); ?>"></script>
+</body>
+</html>
