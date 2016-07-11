@@ -82,8 +82,15 @@
       <div class="outlets link_box" style="border-right:none"></div>
       <div class="fr">
         <div class="about_user">
-          <div class="login"><a rel="nofollow" href="{{url('/Home/login')}}">登录</a></div>
-          <div class="register"><a rel="nofollow" href="javascript:register();">注册</a></div>
+            @if(!Session::has("userData"))
+                <div class="login"><a rel="nofollow" href="{{url('/Home/login')}}">登录</a></div>
+          
+                <div class="register"><a rel="nofollow" href="{{url("/Home/register")}}">注册</a></div>
+            @else
+            <span class="login_span">您好，&nbsp;<a>{{ Session::get("userData")->uname }}&nbsp;</a></span>|
+            <span class="login_span"><a rel="nofollow" href="{{url('/Home/logout')}}">退出</a></span>
+            @endif
+        
         </div>
         <!--about_user end -->
         <div class="my_yg link_box">

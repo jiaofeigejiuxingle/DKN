@@ -111,16 +111,17 @@ function register() {
         <div class="nreg_left fr">
             <ul class="tab_sig_reg clearfix">
                 <li class="tab_sig tab_cur"><a href="#">登录</a></li>
-                <li class="tab_reg"><a href="javascript:register();">注册</a></li>
+                <li class="tab_reg"><a href="">注册</a></li>
             </ul>
             <div class="nreg_form">
-                <form sid="loginform" method="post" action="/Home/logTodo">
+               <font color="red"><?php echo e(session("info")); ?></font>
+                <form sid="loginform" name="login" method="post" action="/Home/logTodo">
                     <input type="hidden" name="_token" value="<?php echo e(isset($data['_token']) ? $data['_token'] : csrf_token()); ?>" />
                     <dl class="nreg_item clearfix">
                         <dd>
                             <div class="nreg_input_bg">
                                 <i class="reg_user_name"></i>
-                                <input type="text" name="uname" placeholder="账号" id="email_" class="nreg_input" maxlength="50" value=""/>
+                                <input type="text" name="uname" placeholder="请输入您的账号" id="email_" class="nreg_input" maxlength="50" value=""/>
                             </div>
                         </dd>
                         <dt><div id="login_email_tip" class="errortips"></div></dt>
@@ -129,26 +130,24 @@ function register() {
                         <dd>
                             <div class="nreg_input_bg">
                                 <i class="reg_password"></i>
-                                <input type="password" name="password" placeholder="请输入密码" id="password_" class="nreg_input"  maxlength="50" />
+                                <input type="password" name="password" placeholder="请输入您的密码" id="password_" class="nreg_input"  maxlength="50" />
                             </div>
                         </dd>
                         <dt><div id="login_password_tip" class="errortips"></div></dt>
                     </dl>
-	<input type="hidden" name="8p1r8V6W3N" value="1Q0d2F" id="loginNonceId"/>
-						<div id="code_container" style="display:none;">
-				            <dl class="nreg_item clearfix">
-				                <dd>
-				                    <div class="nreg_input_bg fl" style="width:202px">
-				                        <label class="lab1 ver_code" for="code2_">验证码</label>
-				                        <input type="text" id="code2_" class="nreg_sinput" maxlength="4" style="width: 130px"/>
-				                    </div>
-				                    <div class="fl" style=" padding:0">
-				                        <img  id="imageValidate2" onclick="changeValidateImage2();return false;"/>
-				                    </div>
-				                </dd>
-				                <dt><div id="code2_tip"></div></dt>
-				            </dl>
-				        </div>
+                    <input type="hidden" name="8p1r8V6W3N" value="1Q0d2F" id="loginNonceId"/>
+                     <dl class="nreg_item clearfix">
+                     <dd>
+                        <div class="nreg_input_bg fl" style="width:202px">
+				 <label class="lab1 ver_code" for="code">验证码</label>
+				  <input type="text" name="code" value="<?php echo e(isset($data['code']) ? $data['code'] : ''); ?>" class="nreg_sinput" maxlength="5" style="width: 130px" name="code" />
+                        </div>
+			 <div class="fl" style=" padding:0">
+				  <img src="<?php echo e(url('/captcha')."/". rand()); ?>" id="code" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" style="width:110px"/>
+			 </div>
+                    </dd>
+			 <dt><div id="code2_tip"></div></dt>
+                    </dl>
                     <p style="display: block;text-align: right;margin-right: 17px;">
                         <a href="http://www.yougou.com/forgotpassword.jhtml" style="line-height: 26px; text-decoration:underline">忘记密码？</a>
                     </p>
@@ -165,6 +164,7 @@ function register() {
                     </p>
                     <input type="hidden" name="8h9Z9t9y1F" value="7Y9R4u" id="loginNonceId"/>
                 </form>
+                <script src="<?php echo e(asset('/js/home/login_index.js')); ?>"></script>
             </div>
         </div>
     </div>
@@ -213,6 +213,7 @@ function register() {
 </script>
 
 <script type="text/javascript" src="/js/home/conversion.js"></script>
+
 <noscript>
 	<div style="display:inline;">
 		<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1016027598/?label=EFaYCJrxqgIQzrO95AM&amp;guid=ON&amp;script=0"/>

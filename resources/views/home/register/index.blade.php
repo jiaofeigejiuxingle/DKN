@@ -44,8 +44,8 @@
 		<div class="outlets link_box" style="border-right:none"></div>
 		<div class="fr">
 		<div class="about_user">
-			<div class="login"><a  rel="nofollow" href="javascript:login();">登录</a></div>
-			<div class="register"><a  rel="nofollow" href="javascript:register();">注册</a></div>
+			<div class="login"><a  rel="nofollow" href="{{url("Home/login")}}">登录</a></div>
+			<div class="register"><a  rel="nofollow" href="">注册</a></div>
 		</div><!--about_user end -->
 		<div class="my_yg link_box">
 			<a href="http://www.yougou.com/my/ucindex.jhtml" class="a1">我的优购</a>
@@ -101,8 +101,9 @@ function register() {
     return false;
 }
 </script>
-
-<form action="/registerValidate.jhtml" method="post">
+<font color="red">{{ session("info") }}</font>
+<form action="{{url("Home/register/store")}}" method="post">
+    <input type="hidden" name="_token" value="{{csrf_token()}}" />
     <input id="redirectURL_1" type="hidden" name="redirectURL" value="">
     <div class="cen-new rel">
     	
@@ -111,8 +112,8 @@ function register() {
         <div class="nreg_box clearfix" style="left: 50%;margin-left: 115px;position: absolute;top: 0;width: 378px;z-index: 1;">
             <div id="emailDiv" class="nreg_left fr" style="height: 530px;margin-top: 12px">
                 <ul class="tab_sig_reg clearfix">
-                    <li class="tab_sig"><a href="javascript:login();">登录</a></li>
-                    <li class="tab_reg tab_cur"><a href="#">注册</a></li>
+                    <li class="tab_sig"><a href="{{url("/Home/login")}}">登录</a></li>
+                    <li class="tab_reg tab_cur"><a href="">注册</a></li>
                 </ul>
                 <div class="nreg_form">
                     <dl class="nreg_item mobile_regitem clearfix rel" id="mobile_nreg_item">
@@ -121,43 +122,43 @@ function register() {
                             <div class="nreg_input_bg rel">
                                 <label class="lab1 nreg_mob_ema"><span class="fl">账号</span><i class="tab_nreg"></i></label>
                                 <div class="tab_user_name">
-                                    <a id="mobileLink" class="reg_Tab reg_TabCurr" href="javascript:;" regtype="mobile" ><span>账号</span><i class="tab_nreg"></i></a>
+                                    <a id="mobileLink" class="reg_Tab reg_TabCurr" href="" regtype="" ><span>账号</span><i class="tab_nreg"></i></a>
                                  </div>
-                                <input type="text" name="uname" id="reg_mobile_" class="nreg_input"  valid = "Mobile" placeholder="请输入您的账号"/>
+                                <input type="text" name="uname" id="" class="nreg_input"  valid = "" placeholder="请输入您的账号"/>
                             </div>
                         </dd>
+                        
+                    </dl>
+                    <br/>
+                    <dl class="nreg_item mobile_regitem clearfix rel" id="mobile_nreg_item">
+                        <dd>
+                            <div class="nreg_input_bg rel">
+                                <label class="lab1 nreg_mob_ema"><span class="fl">昵称</span><i class="tab_nreg"></i></label>
+                                <div class="tab_user_name">
+                                    <a id="mobileLink" class="reg_Tab reg_TabCurr" href="" regtype="" ><span>昵称</span><i class="tab_nreg"></i></a>
+                                 </div>
+                                <input type="text" name="nickname" id="" class="nreg_input"  valid = "" placeholder="请输入您的昵称"/>
+                            </div>
+                         </dd>
+                    </dl>     
                         <dt>
                         <div id="reg_mobile_tip" class="errortips"></div>
                         </dt>
-                    </dl>
                     <dl class="nreg_item email_regitem clearfix rel" id="email_nreg_item" style="display:none;">
-                        <dd>
-                            <div class="nreg_input_bg">
-                                <label class="lab1 nreg_mob_ema"><span class="fl">邮箱</span><i class="tab_nreg"></i></label>
-                                <div class="tab_user_name">
-                                    <a id="mobileLink" class="reg_Tab " href="javascript:;" regtype="mobile" ><span>手机号</span><i class="tab_nreg"></i></a>
-                                    <a id="emailLink" class="reg_Tab reg_TabCurr" href="javascript:;" regtype="email"><span>邮箱</span></a>
-                                </div>
-                                <input type="text" name="email" id="reg_email_" class="nreg_input" valid = "Email" placeholder="不建议填写gmail、hotmail、qq邮箱"/>
-                            </div>
-                        </dd>
-                        <dt>
-                        <div id="reg_email_tip" class="errortips"></div>
-                        </dt>
+                       
                     </dl>
-                     <dl id="dlCode" class="nreg_item email_regitem mobile_regitem clearfix rel">
-                        <dd>
-                            <div class="nreg_input_bg fl" style="width:200px">
-                                <label class="lab1" for="reg_checkcode">验证码</label>
-                                <input type="text" name="reg_checkcode" id="code2_" class="nreg_sinput" maxlength="4" valid="IdentifyCode" style="width: 128px"/>
-                            </div>
-                            <div class="fr" style="margin-right: 17px;">
-                                <img id="imageValidate2" class="changeImg"/>
-                            </div>
-                        </dd>
-                        <dt>
-                        <div id="code2_tip" class="errortips"></div>
-                        </dt>
+                    <br/>
+                    <dl class="nreg_item clearfix">
+                     <dd>
+                        <div class="nreg_input_bg fl" style="width:202px">
+				 <label class="lab1 ver_code" for="code"><span class="fl">验证码</span><i class="tab_nreg"></i></label>
+				  <input type="text" name="code" value="{{ $data['code'] or '' }}" class="nreg_sinput" maxlength="5" style="width: 130px" name="code" />
+                        </div>
+			 <div class="fl" style=" padding:0">
+				  <img src="{{ url('/captcha')."/". rand() }}" id="code" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" style="width:110px"/>
+			 </div>
+                    </dd>
+			 <dt><div id="code2_tip"></div></dt>
                     </dl>
                     <dl id="dlMobileCode" class="nreg_item mobile_regitem clearfix rel">
                         <dt>
@@ -173,8 +174,8 @@ function register() {
                         </div>
                         <dd>
                             <div class="nreg_input_bg">
-                                <label class="lab1" for="reg_password_">密码</label>
-                                <input type="password" name="password1" id="reg_password_" class="nreg_input" maxlength="25" valid="Password" placeholder="字母、数字、符号均可，6-25个字符以内"/>
+                                <label class="lab1" for="">密码</label>
+                                <input type="password" name="password" id="" class="nreg_input" maxlength="25"  placeholder="字母、数字、符号均可，6-25个字符以内"/>
                             </div>
                         </dd>
                         <dt>
@@ -184,9 +185,9 @@ function register() {
                     <dl class="nreg_item clearfix rel">
                         <dd>
                             <div class="nreg_input_bg">
-                                <label class="lab1" for="reg_password2">确认密码</label>
-                                <input type="password" id="reg_password2" class="nreg_input" maxlength="25" valid="RePassword"/>
-<input type="hidden" name="8D6o0M3Z2m" value="3f4b2g" id="reg_nonce_id"/>
+                                <label class="lab1" for="">确认密码</label>
+                                <input type="password" name="repassword" id="" class="nreg_input" maxlength="25" />
+                                <input type="hidden" name="8D6o0M3Z2m" value="3f4b2g" id="reg_nonce_id"/>
                             </div>
                         </dd>
                         <dt>
@@ -201,7 +202,7 @@ function register() {
                     <p class="blank5"></p>
 
                     <p style="text-align: center">
-                        <a href="javascript:void();" class="nreg_submit"><input type="submit" title="立即注册" value="确认并注册" id="reg_buton"></a>
+                        <a href="" class="nreg_submit"><input type="submit" title="立即注册" value="确认并注册" id="reg_buton"></a>
                     </p>
                 </div>
             </div>

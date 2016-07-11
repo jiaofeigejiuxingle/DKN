@@ -19,8 +19,8 @@ class LoginController extends Controller
 		return view("admin.login.index", compact("data"));
 	}
 	
-	//生成验证码的方法
-	public function captcha($tmp)
+    //生成验证码的方法
+    public function captcha($tmp)
     {
         //生成验证码图片的Builder对象，配置相应属性
         $builder = new CaptchaBuilder;

@@ -80,10 +80,27 @@ Route::get("/Admin/rule/delete/{id}", "Admin\RuleController@destroy");
 
 
 //前台主页
-Route::get('/Home/index', 'Home\IndexController@index');
+Route::get('/Home', 'Home\IndexController@index');
 //前台登录
 Route::get('/Home/login', 'Home\LoginController@index');
 //前台登录验证
 Route::post('/Home/logTodo', 'Home\LoginController@logTodo');
+
+//前台退出
+Route::get('Home/logout','Home\LoginController@logout');
 //前台用户注册
 Route::get('/Home/register', 'Home\RegisterController@index');
+Route::post('Home/register/store','Home\RegisterController@store');
+
+
+
+//购物车
+Route::get('Home/gouwuche','Home\GouwucheController@index');
+
+//商品展示
+Route::get('Home/show','Home\ShowController@index');
+
+//商品购买
+Route::get('Home/buy','Home\BuyController@index');
+
+

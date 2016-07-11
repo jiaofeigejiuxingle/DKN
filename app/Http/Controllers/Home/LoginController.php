@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use Validator;
+use DB;
 use Hash;
 class LoginController extends Controller
 {
@@ -22,11 +23,36 @@ class LoginController extends Controller
         return view("home.login.index", compact("data"));
     }
     
-    
-    public function logTodo(Request $request)
+     //生成验证码的方法
+    public function captcha($tmp)
     {
-        //有效性验证
-		$data = $request->only("uname", "password");
+        //生成验证码图片的Builder对象，配置相应属性
+        $builder = new CaptchaBuilder;
+        //可以设置图片宽高及字体
+        $builder->build($width = 80, $height = 24, $font = "C:\Windows\Fonts\msyh.ttf");
+        //获取验证码的内容
+        $phrase = $builder->getPhrase();
+
+        //把内容存入session
+        Session::flash('code', $phrase);
+		
+        //生成图片
+        header("Cache-Control: no-cache, must-revalidate");
+        header('Content-Type: image/jpeg');
+        $builder->output();
+    }
+    
+        //登陆验证的方法
+	public function logTodo(Request $request)
+	{
+		//验证码是否正确
+		if (session("code") != $request->get("code"))
+		{
+			$request->flash();
+			return back()->with(["info" => "验证码错误"]);
+		}
+		//有效性验证
+		$data = $request->only("uname", "password", "code");
 		
 		$result = Validator::make($data, [
 			"uname" => "required",
@@ -37,20 +63,26 @@ class LoginController extends Controller
 		{
 			return back()->with(["info" => $result->errors()]);
 		}
-        //账号是否存在 密码是否正确
-        $userModel = new \App\User();
-        $userRec = $userModel->where("uname", $data["uname"])->get()->first();
-        if (empty($userRec)) {
-            $request->flash();
-            return back()->with(["info" => "账号不存在"]);
-        } else if ($userRec["password"] != md5($data["password"])) {
-            $request->flash();
-            return back()->with(["info" => "密码不正确"]);
-        } else {
-            session(["userData" => $userRec]);
-            return redirect("/Home/index");
-        }
-    }
+		//账号是否存在 密码是否正确
+		$userModel = new \App\User();
+                //$hashed = Hash::make($data["password"]);
+                //dd($hashed);
+		$userRec = $userModel->where("uname", $data["uname"])->get()->first();
+                //dd($userRec['password']);
+		if (empty($userRec))
+		{
+			$request->flash();
+			return back()->with(["info" => "账号不存在"]);
+		} else if ($userRec["password"] != md5($data["password"]))
+		{
+			$request->flash();
+			return back()->with(["info" => "密码不正确"]);
+		} else 
+		{
+			session(["userData" => $userRec]);
+			return redirect("/Home");
+		}
+	}
     /**
      * Show the form for creating a new resource.
      *
@@ -115,5 +147,12 @@ class LoginController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function logout(){
+        //退出
+        Session::forget("userData");
+        return redirect("/Home");
+       
     }
 }
