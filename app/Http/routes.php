@@ -78,6 +78,9 @@ Route::resource("/Admin/rule", "Admin\RuleController");
 Route::post("/Admin/rule/setStatus", "Admin\RuleController@setStatus");
 Route::get("/Admin/rule/delete/{id}", "Admin\RuleController@destroy");
 
+//商品管理
+Route::resource("/Admin/goods", "Admin\GoodsController");
+Route::post("/Admin/goods/im", "Admin\GoodsController@im");
 
 //前台主页
 Route::get('/Home/index', 'Home\IndexController@index');

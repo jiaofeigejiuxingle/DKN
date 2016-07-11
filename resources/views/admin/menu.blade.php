@@ -131,24 +131,23 @@ background='/images/adminmenu_bg.jpg' border=0>
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background='/images/admin/menu_bt.jpg'><A 
             class=menuParent onclick=expand(5) 
-            href="javascript:void(0);">经典案例</A></TD></TR>
+            href="javascript:void(0);">商品管理</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child5 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
       width=150 border=0>
-        
         <TR height=20>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>分类管理</A></TD></TR>
+            href="{{url('/Admin/goods')}}" 
+            target=main>商品列表</A></TD></TR>
         <TR height=20>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>子类管理</A></TD></TR>
+            href="{{url('/Admin/goods/create')}}" 
+            target=main>添加商品</A></TD></TR>
         <TR height=4>
           <TD colSpan=2></TD></TR></TABLE>
       <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>

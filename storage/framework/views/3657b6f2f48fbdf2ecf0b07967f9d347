@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主要内容区main</title>
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/bootstrap/css/bootstrap.min.css')); ?>" />
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/css/admin/user_index.css')); ?>" />
+<link type="text/css" rel="stylesheet" href="<?php echo e(asset('/css/admin/base.css')); ?>" />
+<script src="<?php echo e(asset('/js/jquery-1.8.3.min.js')); ?>" type="text/javascript"></script>
+</head>
+<body>
+<!--main_top-->
+<table class="bordered">
+    <tr>
+        <th>编号</th><th>商品名称</th><th>所属分类</th><th>缩略图</th><th>操作</th>
+    </tr>
+   <?php foreach($goods as $good): ?>
+   <tr>
+       <td><?php echo e($good->gid); ?></td>
+       <td><?php echo e($good->name); ?></td>
+       <td><?php echo e($good->cname); ?></td>
+       <td><img src="<?php echo e($good->im); ?>" height="50" /></td>
+       <td><a href="">编辑</a> <a href="">删除</a></td>
+   </tr>
+   <?php endforeach; ?>
+</table>
+<?php echo $goods->render(); ?>
+
+</body>
+</html>
