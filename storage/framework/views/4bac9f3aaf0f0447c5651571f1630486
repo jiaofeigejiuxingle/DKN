@@ -127,36 +127,60 @@ background='/images/adminmenu_bg.jpg' border=0>
           <TD><A class=menuChild 
             href="<?php echo e(url('/Admin/rule/create')); ?>" 
             target=main>添加权限</A></TD></TR>
+        
       <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background='/images/admin/menu_bt.jpg'><A 
             class=menuParent onclick=expand(5) 
-            href="javascript:void(0);">经典案例</A></TD></TR>
+            href="javascript:void(0);">商品管理</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child5 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
       width=150 border=0>
-        
         <TR height=20>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>分类管理</A></TD></TR>
+            href="<?php echo e(url('/Admin/goods')); ?>" 
+            target=main>商品列表</A></TD></TR>
         <TR height=20>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>子类管理</A></TD></TR>
+            href="<?php echo e(url('/Admin/goods/create')); ?>" 
+            target=main>添加商品</A></TD></TR>
         <TR height=4>
           <TD colSpan=2></TD></TR></TABLE>
-      <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>
+        <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>
+        
+<!--        <TR height=22>
+          <TD style="PADDING-LEFT: 30px" background='/images/admin/menu_bt.jpg'><A 
+            class=menuParent onclick=expand(6) 
+            href="javascript:void(0);">分类管理</A></TD></TR>
+        <TR height=4>
+          <TD></TD></TR></TABLE>
+        <TABLE id=child5 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
+      width=150 border=0>
+        <TR height=20>
+          <TD align=middle width=30><IMG height=9 
+            src="/images/admin/menu_icon.gif" width=9></TD>
+          <TD><A class=menuChild 
+            href="<?php echo e(url('/Admin/category')); ?>" 
+            target=main>分类列表</A></TD></TR>
+        <TR height=20>
+          <TD align=middle width=30><IMG height=9 
+            src="/images/admin/menu_icon.gif" width=9></TD>
+          <TD><A class=menuChild 
+            href="<?php echo e(url('/Admin/category/create')); ?>" 
+            target=main>添加父类</A></TD></TR>
+        <TR height=4>
+          <TD colSpan=2></TD></TR></TABLE>
+      <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>-->
         
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background='/images/admin/menu_bt.jpg'><A 
             class=menuParent onclick=expand(6) 
-            href="javascript:void(0);">高级管理</A></TD></TR>
+            href="javascript:void(0);">分类管理</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child6 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
@@ -166,74 +190,15 @@ background='/images/adminmenu_bg.jpg' border=0>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>广告管理</A></TD></TR>
+            href="<?php echo e(url('/Admin/category')); ?>" 
+            target=main>分类列表</A></TD></TR>
         <TR height=20>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>访问统计</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>邮件发送设置</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>联系部门</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>用户留言</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>招聘职位</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>应聘人员</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>留言簿</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>产品订购</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>链接管理</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>文件管理</A></TD></TR>
-        <TR height=20>
-          <TD align=middle width=30><IMG height=9 
-            src="/images/admin/menu_icon.gif" width=9></TD>
-          <TD><A class=menuChild 
-            href="#" 
-            target=main>信息转移</A></TD></TR>
+            href="<?php echo e(url('/Admin/category/create')); ?>" 
+            target=main>添加父类</A></TD></TR>
+        
         <TR height=4>
           <TD colSpan=2></TD></TR></TABLE>
       <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>
@@ -241,7 +206,7 @@ background='/images/adminmenu_bg.jpg' border=0>
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background='/images/admin/menu_bt.jpg'><A 
             class=menuParent onclick=expand(7) 
-            href="javascript:void(0);">系统管理</A></TD></TR>
+            href="javascript:void(0);">商品详细信息</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child7 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
@@ -251,14 +216,14 @@ background='/images/adminmenu_bg.jpg' border=0>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>基本设置</A></TD></TR>
+            href="<?php echo e(url('/Admin/detail')); ?>" 
+            target=main>详细列表</A></TD></TR>
         <TR height=20>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>
           <TD><A class=menuChild 
-            href="#" 
-            target=main>样式管理</A></TD></TR>
+            href="<?php echo e(url('/Admin/detail/create')); ?>" 
+            target=main>添加详细信息</A></TD></TR>
         <TR height=20>
           <TD align=middle width=30><IMG height=9 
             src="/images/admin/menu_icon.gif" width=9></TD>

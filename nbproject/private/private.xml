@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/wamp/www/DKN/resources/views/admin/goods/edit.blade.php</file>
             <file>file:/E:/wamp/www/DKN/resources/views/admin/goods/create.blade.php</file>
             <file>file:/E:/wamp/www/DKN/public/js/admin/goods_index.js</file>
@@ -11,6 +12,11 @@
             <file>file:/E:/wamp/www/DKN/public/js/admin/user_edit.js</file>
             <file>file:/E:/wamp/www/DKN/app/Http/Controllers/Admin/GoodsController.php</file>
             <file>file:/E:/wamp/www/DKN/resources/views/admin/user/edit.blade.php</file>
+=======
+            <file>file:/D:/wamp/www/DKN/app/Http/Controllers/Admin/UserController.php</file>
+            <file>file:/D:/wamp/www/DKN/app/Http/routes.php</file>
+            <file>file:/D:/wamp/www/DKN/app/Http/Controllers/Admin/CategoryController.php</file>
+>>>>>>> 15b0fa8215e4c1745e225f0452fe7e7bf5bb1197
         </group>
     </open-files>
 </project-private>
