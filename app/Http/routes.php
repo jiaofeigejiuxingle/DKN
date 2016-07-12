@@ -81,6 +81,9 @@ Route::get("/Admin/rule/delete/{id}", "Admin\RuleController@destroy");
 //商品管理
 Route::resource("/Admin/goods", "Admin\GoodsController");
 Route::post("/Admin/goods/im", "Admin\GoodsController@im");
+Route::get("/Admin/goods/edit/{gid}","Admin\GoodsController@edit");
+Route::post("/Admin/goods/update","Admin\GoodsController@update");
+Route::get("/Admin/goods/destroy/{gid}","Admin\GoodsController@destroy");
 
 //前台主页
 Route::get('/Home', 'Home\IndexController@index');
@@ -92,13 +95,9 @@ Route::post('/Home/logTodo', 'Home\LoginController@logTodo');
 //前台退出
 Route::get('Home/logout','Home\LoginController@logout');
 //前台用户注册
-<<<<<<< HEAD
 Route::get('/Home/register', 'Home\RegisterController@index');
-=======
 Route::get('/Home/register', 'Home\RegisterController@index');
 Route::post('Home/register/store','Home\RegisterController@store');
-
-
 
 //购物车
 Route::get('Home/gouwuche','Home\GouwucheController@index');
@@ -108,6 +107,3 @@ Route::get('Home/show','Home\ShowController@index');
 
 //商品购买
 Route::get('Home/buy','Home\BuyController@index');
-
-
->>>>>>> 029bc4440195de1401deacf06d70decf61f52bc8

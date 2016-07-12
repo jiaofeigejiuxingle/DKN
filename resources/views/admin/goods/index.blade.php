@@ -3,10 +3,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>主要内容区main</title>
+<script src="{{ asset('/js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}" />
 <link type="text/css" rel="stylesheet" href="{{asset('/css/admin/user_index.css')}}" />
 <link type="text/css" rel="stylesheet" href="{{asset('/css/admin/base.css') }}" />
-<script src="{{ asset('/js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
 </head>
 <body>
 <!--main_top-->
@@ -20,7 +20,7 @@
        <td>{{$good->name}}</td>
        <td>{{$good->cname}}</td>
        <td><img src="{{$good->im}}" height="50" /></td>
-       <td><a href="">编辑</a> <a href="">删除</a></td>
+       <td><a href="/Admin/goods/edit/{{$good->gid}}">编辑</a> <a href="/Admin/goods/destroy/{{$good->gid}}">删除</a></td>
    </tr>
    @endforeach
 </table>

@@ -96,9 +96,24 @@ class GoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($gid)
     {
-        //
+        //查询商品的记录
+        $userRec = DB::table("goods")->leftJoin("category", "goods.cid", "=", "category.cid")->where("goods.gid", $gid)->select("goods.*","category.cname")->first();
+//	dd($userRec);
+//        exit;
+        //查询所有商品分组
+         $goods = DB::table("goods")->get();
+         //查询所有的分类
+        $categories = DB::table("category")->orderByRaw("CONCAT_WS(',',path, cid)")->get();
+        foreach ($categories as $key=>$cate)
+        {
+            $categories[$key]->cname = "|".str_repeat("--",substr_count($cate->path, ",")*4).$cate->cname;
+        }
+        //dd($categories);
+        
+	//在模板中显示
+        return view("admin.goods.edit", ["userRec" => $userRec, "goods" => $goods,"categories" => $categories]);
     }
 
     /**
@@ -108,9 +123,15 @@ class GoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = $request->only("name","cid","gid");
+//        dd($data);
+       DB::table("goods")->where("gid", $request->get("gid"))->update($data);
+            
+//                DB::table("category")->where("gid", $request->get("gid"))->update(["cid" => $request->get("cid")]);
+		return redirect("/Admin/goods");
+ 
     }
 
     /**
@@ -119,8 +140,14 @@ class GoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($gid)
     {
-        //
+         if(DB::table("goods")->where("gid",$gid)->delete())
+        {
+            return redirect("Admin/goods");
+        } else 
+        {
+        return back()->with(["info"=>"删除失败"]);
+        }
     }
 }
