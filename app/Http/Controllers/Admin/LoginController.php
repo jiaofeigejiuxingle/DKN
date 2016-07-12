@@ -69,7 +69,7 @@ class LoginController extends Controller
 		{
 			$request->flash();
 			return back()->with(["info" => "账号不存在"]);
-		} else if ($userRec["password"] != md5($data["password"]))
+		} else if (!Hash::check($data['password'],$userRec->password))
 		{
 			$request->flash();
 			return back()->with(["info" => "密码不正确"]);

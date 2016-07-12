@@ -78,10 +78,18 @@ Route::resource("/Admin/rule", "Admin\RuleController");
 Route::post("/Admin/rule/setStatus", "Admin\RuleController@setStatus");
 Route::get("/Admin/rule/delete/{id}", "Admin\RuleController@destroy");
 
+//分类管理
+Route::resource("/Admin/category", "Admin\CategoryController");
+Route::post("/Admin/category/setIsNav", "Admin\CategoryController@setIsNav");
+Route::get("/Admin/category/child/{cid}", "Admin\CategoryController@create");
+Route::get("/Admin/category/delete/{cid}", "Admin\CategoryController@destroy");
+
 //商品管理
 Route::resource("/Admin/goods", "Admin\GoodsController");
 Route::post("/Admin/goods/im", "Admin\GoodsController@im");
 
+//商品详细信息
+Route::resource("/Admin/detail", "Admin\DetailController");
 //前台主页
 Route::get('/Home', 'Home\IndexController@index');
 //前台登录
