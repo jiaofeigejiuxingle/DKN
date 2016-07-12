@@ -103,13 +103,13 @@ Route::post('/Home/logTodo', 'Home\LoginController@logTodo');
 //前台退出
 Route::get('Home/logout','Home\LoginController@logout');
 //前台用户注册
-<<<<<<< HEAD
-Route::get('/Home/register', 'Home\RegisterController@index');
-=======
 
 Route::get('/Home/register', 'Home\RegisterController@index');
 
->>>>>>> 15b0fa8215e4c1745e225f0452fe7e7bf5bb1197
+
+Route::get('/Home/register', 'Home\RegisterController@index');
+
+
 Route::get('/Home/register', 'Home\RegisterController@index');
 Route::post('Home/register/store','Home\RegisterController@store');
 
@@ -120,9 +120,9 @@ Route::get('Home/gouwuche','Home\GouwucheController@index');
 Route::get('Home/show','Home\ShowController@index');
 
 //商品购买
-<<<<<<< HEAD
-Route::get('Home/buy','Home\BuyController@index');
-=======
+
 Route::get('Home/buy','Home\BuyController@index');
 
->>>>>>> 15b0fa8215e4c1745e225f0452fe7e7bf5bb1197
+Route::get('Home/buy','Home\BuyController@index');
+
+
